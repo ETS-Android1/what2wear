@@ -1,34 +1,31 @@
 package com.example.what2wear.mvp.weatherInfo;
 
+import android.content.res.Resources;
 import android.util.Log;
 
+import com.example.what2wear.R;
 import com.example.what2wear.models.weather.WeatherResponse;
 import com.example.what2wear.network.WeatherAPI;
-import com.example.what2wear.network.WeatherClient;
+import com.example.what2wear.network.HttpClient;
+import com.example.what2wear.view.WeatherInfoActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class WeatherInfoPresenterImpl implements WeatherInfoActivityContract.Presenter {
+  private static final String BASE_URL = "http://api.openweathermap.org/";
   private WeatherInfoActivityContract.View mView;
   private WeatherAPI weatherAPI;
 
-  // Retrieves weather api key
-  static {
-    System.loadLibrary("keys");
-  }
-
-  public native String getWeatherKey();
-
   public WeatherInfoPresenterImpl(WeatherInfoActivityContract.View view) {
     this.mView = view;
-    weatherAPI = WeatherClient.getRetrofit().create(WeatherAPI.class);
+    weatherAPI = HttpClient.getClient(BASE_URL).create(WeatherAPI.class);
   }
 
   @Override
   public void loadWeatherDataByCoordinate(double lat, double lon) {
-    String key = getWeatherKey();
+    String key = WeatherInfoActivity.getContext().getString(R.string.weather_key);
     Call<WeatherResponse> call = weatherAPI.getWeatherByCoordinate(lat, lon, key);
 
     call.enqueue(new Callback<WeatherResponse>() {
