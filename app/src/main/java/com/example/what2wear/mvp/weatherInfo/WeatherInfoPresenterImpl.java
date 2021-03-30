@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.what2wear.R;
+import com.example.what2wear.data.WeatherDao;
 import com.example.what2wear.models.weather.WeatherResponse;
 import com.example.what2wear.network.WeatherAPI;
 import com.example.what2wear.network.HttpClient;
@@ -16,7 +17,7 @@ import retrofit2.Response;
 public class WeatherInfoPresenterImpl implements WeatherInfoActivityContract.Presenter {
   private static final String BASE_URL = "http://api.openweathermap.org/";
   private WeatherInfoActivityContract.View mView;
-  private WeatherAPI weatherAPI;
+  private final WeatherAPI weatherAPI;
 
   public WeatherInfoPresenterImpl(WeatherInfoActivityContract.View view) {
     this.mView = view;
@@ -26,7 +27,7 @@ public class WeatherInfoPresenterImpl implements WeatherInfoActivityContract.Pre
   @Override
   public void loadWeatherDataByCoordinate(double lat, double lon) {
     String key = WeatherInfoActivity.getContext().getString(R.string.weather_key);
-    Call<WeatherResponse> call = weatherAPI.getWeatherByCoordinate(lat, lon, key);
+    Call<WeatherResponse> call = weatherAPI.getWeatherByCoordinate(lat, lon, "metric", key);
 
     call.enqueue(new Callback<WeatherResponse>() {
       @Override

@@ -11,5 +11,6 @@ public interface WeatherAPI {
   @GET("data/2.5/weather")
   Call<WeatherResponse> getWeatherByCoordinate(@Query("lat") double lat,
                                                @Query("lon") double lon,
+                                               @Query("units") String units,
                                                @Query("appid") String key);
 }
