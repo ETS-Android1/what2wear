@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.What2Wear" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
+        <item name="android:windowBackground">@color/white</item>
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -13,4 +14,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <!-- Splash theme. -->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryDark">@color/teal_200</item>
+        <item name="colorAccent">@color/teal_200</item> <!-- No Title Bar-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item> <!-- white status bar -->
+        <item name="android:statusBarColor">@color/teal_200</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- background -->
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
 </resources>
