@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class WeatherInfoPresenterImpl implements WeatherInfoActivityContract.Presenter {
   private static final String BASE_URL = "http://api.openweathermap.org/";
-  private WeatherInfoActivityContract.View mView;
+  private final WeatherInfoActivityContract.View mView;
   private final WeatherAPI weatherAPI;
 
   public WeatherInfoPresenterImpl(WeatherInfoActivityContract.View view) {

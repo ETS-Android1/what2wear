@@ -1,0 +1,82 @@
+{
+  "HAT" :  [
+    {
+      "name" : "Beanie",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Beanie",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    }
+  ],
+  "TOP" : [
+    {
+      "name" : "Wool Sweater",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Beanie",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    }
+  ],
+  "BOTTOM" : [
+    {
+      "name" : "Blue jeans",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Beanie",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    }
+  ],
+  "OUTWEAR" : [
+    {
+      "name" : "Leather Jacket",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Beanie",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    }
+  ],
+  "SHOES" : [
+    {
+      "name" : "Sandals",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Beanie",
+      "fileName" : "hat_beanie",
+      "minTemp" : 12.12,
+      "maxTemp" : 12.12,
+      "gender" : "MALE"
+    }
+  ]
+}
