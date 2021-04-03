@@ -3,48 +3,83 @@
     {
       "name" : "Beanie",
       "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "minTemp" : -20.00,
+      "maxTemp" : 10.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Cap",
+      "fileName" : "hat_cap",
+      "minTemp" : 10.00,
+      "maxTemp" : 55.00,
       "gender" : "MALE"
     },
     {
       "name" : "Beanie",
       "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
-      "gender" : "MALE"
+      "minTemp" : -20.00,
+      "maxTemp" : 10.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Cap",
+      "fileName" : "hat_cap",
+      "minTemp" : 10.00,
+      "maxTemp" : 55.00,
+      "gender" : "FEMALE"
     }
   ],
   "TOP" : [
     {
       "name" : "Wool Sweater",
-      "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "fileName" : "top_woolsweater",
+      "minTemp" : -10.00,
+      "maxTemp" : 13.00,
       "gender" : "MALE"
     },
     {
-      "name" : "Beanie",
-      "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "name" : "T-Shirt",
+      "fileName" : "top_tshirt",
+      "minTemp" : -10.00,
+      "maxTemp" : 55.00,
       "gender" : "MALE"
+    },
+    {
+      "name" : "Wool Sweater",
+      "fileName" : "top_woolsweater",
+      "minTemp" : -10.00,
+      "maxTemp" : 13.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "T-Shirt",
+      "fileName" : "top_tshirt",
+      "minTemp" : -10.00,
+      "maxTemp" : 55.00,
+      "gender" : "FEMALE"
     }
   ],
   "BOTTOM" : [
     {
       "name" : "Blue jeans",
-      "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "fileName" : "bottom_bluejeans",
+      "minTemp" : 5.00,
+      "maxTemp" : 25.00,
       "gender" : "MALE"
     },
     {
-      "name" : "Beanie",
-      "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "name" : "Joggers",
+      "fileName" : "bottom_joggers",
+      "minTemp" : 5.00,
+      "maxTemp" : 25.00,
       "gender" : "MALE"
+    },
+    {
+      "name" : "Blue jeans",
+      "fileName" : "bottom_bluejeansF",
+      "minTemp" : 5.00,
+      "maxTemp" : 25.00,
+      "gender" : "FEMALE"
     }
   ],
   "OUTWEAR" : [
