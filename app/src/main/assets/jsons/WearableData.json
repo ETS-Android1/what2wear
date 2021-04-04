@@ -15,6 +15,20 @@
       "gender" : "MALE"
     },
     {
+      "name" : "Bucket Hat",
+      "fileName" : "hat_buckethat",
+      "minTemp" : 20.00,
+      "maxTemp" : 55.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Sun Hat",
+      "fileName" : "hat_sunhat",
+      "minTemp" : 20.00,
+      "maxTemp" : 55.00,
+      "gender" : "MALE"
+    },
+    {
       "name" : "Beanie",
       "fileName" : "hat_beanie",
       "minTemp" : -20.00,
@@ -25,6 +39,20 @@
       "name" : "Cap",
       "fileName" : "hat_cap",
       "minTemp" : 10.00,
+      "maxTemp" : 55.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Bucket Hat",
+      "fileName" : "hat_buckethat",
+      "minTemp" : 20.00,
+      "maxTemp" : 55.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Sun Hat",
+      "fileName" : "hat_f_sunhat",
+      "minTemp" : 25.00,
       "maxTemp" : 55.00,
       "gender" : "FEMALE"
     }
@@ -38,9 +66,58 @@
       "gender" : "MALE"
     },
     {
+      "name" : "Fleece",
+      "fileName" : "top_fleece",
+      "minTemp" : -10.00,
+      "maxTemp" : 13.00,
+      "gender" : "MALE"
+    },
+    {
       "name" : "T-Shirt",
       "fileName" : "top_tshirt",
+      "minTemp" : 0.00,
+      "maxTemp" : 55.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Henley Shirt",
+      "fileName" : "top_henley",
+      "minTemp" : 0.00,
+      "maxTemp" : 25.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Polo Shirt",
+      "fileName" : "top_polo",
+      "minTemp" : 20.00,
+      "maxTemp" : 45.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Hawaiian Shirt",
+      "fileName" : "top_hawaiian",
+      "minTemp" : 20.00,
+      "maxTemp" : 50.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Flannel",
+      "fileName" : "top_flannel",
       "minTemp" : -10.00,
+      "maxTemp" : 20.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Runner's Tee",
+      "fileName" : "top_athletic",
+      "minTemp" : 15.00,
+      "maxTemp" : 55.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Tank Top",
+      "fileName" : "top_tanktop",
+      "minTemp" : 25.00,
       "maxTemp" : 55.00,
       "gender" : "MALE"
     },
@@ -56,6 +133,55 @@
       "fileName" : "top_tshirt",
       "minTemp" : -10.00,
       "maxTemp" : 55.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Blouse",
+      "fileName" : "top_blouse",
+      "minTemp" : 10.00,
+      "maxTemp" : 55.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Flannel",
+      "fileName" : "top_flannel",
+      "minTemp" : -10.00,
+      "maxTemp" : 20.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Denim Shirt",
+      "fileName" : "top_f_denim",
+      "minTemp" : 0.00,
+      "maxTemp" : 25.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Workout Tank Top",
+      "fileName" : "top_f_athletic",
+      "minTemp" : 20.00,
+      "maxTemp" : 50.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Fleece",
+      "fileName" : "top_fleece",
+      "minTemp" : -10.00,
+      "maxTemp" : 13.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Floral Tank Top",
+      "fileName" : "top_f_tanktop",
+      "minTemp" : 25.00,
+      "maxTemp" : 55.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Formal Button-up",
+      "fileName" : "top_f_business",
+      "minTemp" : 15.00,
+      "maxTemp" : 35.00,
       "gender" : "FEMALE"
     }
   ],
@@ -70,48 +196,300 @@
     {
       "name" : "Joggers",
       "fileName" : "bottom_joggers",
-      "minTemp" : 5.00,
+      "minTemp" : 10.00,
       "maxTemp" : 25.00,
       "gender" : "MALE"
     },
     {
-      "name" : "Blue jeans",
-      "fileName" : "bottom_bluejeansF",
+      "name" : "Jean Shorts",
+      "fileName" : "bottom_jorts",
+      "minTemp" : 20.00,
+      "maxTemp" : 40.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Athletic Shorts",
+      "fileName" : "bottom_athletic",
+      "minTemp" : 15.00,
+      "maxTemp" : 55.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Golf Shorts",
+      "fileName" : "bottom_golfshorts",
+      "minTemp" : 15.00,
+      "maxTemp" : 55.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Sweat Pants",
+      "fileName" : "bottom_sweats",
+      "minTemp" : -10.00,
+      "maxTemp" : 15.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Hiking Pants",
+      "fileName" : "bottom_hikers",
+      "minTemp" : 0.00,
+      "maxTemp" : 20.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Snow Pants",
+      "fileName" : "bottom_snowpants",
+      "minTemp" : -20.00,
+      "maxTemp" : 5.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Leggings",
+      "fileName" : "bottom_leggings",
+      "minTemp" : 10.00,
+      "maxTemp" : 35.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Blue Jeans",
+      "fileName" : "bottom_f_bluejeans",
       "minTemp" : 5.00,
       "maxTemp" : 25.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Jean Shorts",
+      "fileName" : "bottom_jorts",
+      "minTemp" : 20.00,
+      "maxTemp" : 40.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Athletic Shorts",
+      "fileName" : "bottom_f_athletic",
+      "minTemp" : 15.00,
+      "maxTemp" : 55.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Golf Shorts",
+      "fileName" : "bottom_golfshorts",
+      "minTemp" : 15.00,
+      "maxTemp" : 55.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Sweat Pants",
+      "fileName" : "bottom_sweats",
+      "minTemp" : -10.00,
+      "maxTemp" : 15.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Hiking Pants",
+      "fileName" : "bottom_hikers",
+      "minTemp" : 0.00,
+      "maxTemp" : 20.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Snow Pants",
+      "fileName" : "bottom_snowpants",
+      "minTemp" : -20.00,
+      "maxTemp" : 5.00,
       "gender" : "FEMALE"
     }
   ],
   "OUTWEAR" : [
     {
-      "name" : "Leather Jacket",
-      "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "name" : "Dogecoin Hoodie",
+      "fileName" : "outwear_hoodie",
+      "minTemp" : 5.00,
+      "maxTemp" : 22.00,
       "gender" : "MALE"
     },
     {
-      "name" : "Beanie",
-      "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "name" : "Zip-up Hoodie",
+      "fileName" : "outwear_ziphoodie",
+      "minTemp" : 5.00,
+      "maxTemp" : 22.00,
       "gender" : "MALE"
+    },
+    {
+      "name" : "Canada Goose Jacket",
+      "fileName" : "outwear_wintercoat",
+      "minTemp" : -20.00,
+      "maxTemp" : 5.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "North Face Jacket",
+      "fileName" : "outwear_puffer",
+      "minTemp" : -20.00,
+      "maxTemp" : 5.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Leather Jacket",
+      "fileName" : "outwear_leatherjacket",
+      "minTemp" : 0,
+      "maxTemp" : 15.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Rain Jacket",
+      "fileName" : "outwear_rainjacket",
+      "minTemp" : 10.00,
+      "maxTemp" : 30.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Running Thermal",
+      "fileName" : "outwear_halfzip",
+      "minTemp" : 10.00,
+      "maxTemp" : 25.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Dogecoin Hoodie",
+      "fileName" : "outwear_hoodie",
+      "minTemp" : 5.00,
+      "maxTemp" : 22.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Zip-up Hoodie",
+      "fileName" : "outwear_ziphoodie",
+      "minTemp" : 5.00,
+      "maxTemp" : 22.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Canada Goose Jacket",
+      "fileName" : "outwear_wintercoat",
+      "minTemp" : -20.00,
+      "maxTemp" : 5.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "North Face Jacket",
+      "fileName" : "outwear_f_puffer",
+      "minTemp" : -20.00,
+      "maxTemp" : 5.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Rain Jacket",
+      "fileName" : "outwear_rainjacket",
+      "minTemp" : 10.00,
+      "maxTemp" : 30.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Running Thermal",
+      "fileName" : "outwear_halfzip",
+      "minTemp" : 10.00,
+      "maxTemp" : 25.00,
+      "gender" : "FEMALE"
     }
   ],
   "SHOES" : [
     {
-      "name" : "Sandals",
-      "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "name" : "Timberland Boots",
+      "fileName" : "shoes_blacktimbs",
+      "minTemp" : -20.00,
+      "maxTemp" : 15.00,
       "gender" : "MALE"
     },
     {
-      "name" : "Beanie",
-      "fileName" : "hat_beanie",
-      "minTemp" : 12.12,
-      "maxTemp" : 12.12,
+      "name" : "Snow Boots",
+      "fileName" : "shoes_snowboots",
+      "minTemp" : -30.00,
+      "maxTemp" : 5.00,
       "gender" : "MALE"
+    },
+    {
+      "name" : "Blundstone Boots",
+      "fileName" : "shoes_blundstones",
+      "minTemp" : -10.00,
+      "maxTemp" : 10.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Nike Air Max",
+      "fileName" : "shoes_airmax",
+      "minTemp" : 5.00,
+      "maxTemp" : 35.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Slides",
+      "fileName" : "shoes_slides",
+      "minTemp" : 22.00,
+      "maxTemp" : 50.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Birkenstocks",
+      "fileName" : "shoes_birkenstock",
+      "minTemp" : 22.00,
+      "maxTemp" : 50.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "White Converse",
+      "fileName" : "shoes_converse",
+      "minTemp" : 16.00,
+      "maxTemp" : 40.00,
+      "gender" : "MALE"
+    },
+    {
+      "name" : "Snow Boots",
+      "fileName" : "shoes_f_snowboots",
+      "minTemp" : -30.00,
+      "maxTemp" : 5.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Blundstone Boots",
+      "fileName" : "shoes_blundstones",
+      "minTemp" : -10.00,
+      "maxTemp" : 10.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Adidas NMD",
+      "fileName" : "shoes_f_runners",
+      "minTemp" : 5.00,
+      "maxTemp" : 35.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "UGG Boots",
+      "fileName" : "shoes_uggboots",
+      "minTemp" : -30.12,
+      "maxTemp" : 10.12,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "White Converse",
+      "fileName" : "shoes_converse",
+      "minTemp" : 10.00,
+      "maxTemp" : 40.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Birkenstocks",
+      "fileName" : "shoes_birkenstock",
+      "minTemp" : 22.00,
+      "maxTemp" : 50.00,
+      "gender" : "FEMALE"
+    },
+    {
+      "name" : "Flip-Flops",
+      "fileName" : "shoes_f_slides",
+      "minTemp" : 22.00,
+      "maxTemp" : 50.00,
+      "gender" : "FEMALE"
     }
   ]
 }
