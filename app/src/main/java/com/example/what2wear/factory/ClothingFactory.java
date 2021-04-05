@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClothingFactory {
+  private final static String JSON_DATA = "jsons/WearableData.json";
   private static ClothingFactory clothingFactory = null;
 
   private final List<Hat> hatList = new ArrayList<>();
@@ -88,7 +89,7 @@ public class ClothingFactory {
   private String loadJSONFromAsset() {
     String json;
     try {
-      InputStream is = WeatherInfoActivity.getContext().getAssets().open("jsons/WearableData.json");
+      InputStream is = WeatherInfoActivity.getContext().getAssets().open(JSON_DATA);
       int size = is.available();
       byte[] buffer = new byte[size];
       is.read(buffer);
@@ -102,23 +103,62 @@ public class ClothingFactory {
   }
 
   public List<Top> generateTops(WeatherResponse currentWeather, GenderEnum gender){
-    // filter out appropriate
-    return topList;
+    double currentTemp = currentWeather.getMain().getFeelsLike();
+    ArrayList<Top> filteredList = new ArrayList<>();
+    for (Top top: topList) {
+      if (top.getMinTemp() <= currentTemp && currentTemp < top.getMaxTemp()
+              && gender.equals(top.getGender())) {
+        filteredList.add(top);
+      }
+    }
+    return filteredList;
   }
 
   public List<Bottom> generateBottoms(WeatherResponse currentWeather, GenderEnum gender){
-    return bottomList;
+    double currentTemp = currentWeather.getMain().getFeelsLike();
+    ArrayList<Bottom> filteredList = new ArrayList<>();
+    for (Bottom bottom: bottomList) {
+      if (bottom.getMinTemp() <= currentTemp && currentTemp < bottom.getMaxTemp()
+              && gender.equals(bottom.getGender())) {
+        filteredList.add(bottom);
+      }
+    }
+    return filteredList;
   }
 
   public List<Outwear> generateOutwears(WeatherResponse currentWeather, GenderEnum gender){
-    return outwearList;
+    double currentTemp = currentWeather.getMain().getFeelsLike();
+    ArrayList<Outwear> filteredList = new ArrayList<>();
+    for (Outwear outwear: outwearList) {
+      if (outwear.getMinTemp() <= currentTemp && currentTemp < outwear.getMaxTemp()
+              && gender.equals(outwear.getGender())) {
+        filteredList.add(outwear);
+      }
+    }
+    return filteredList;
   }
 
   public List<Shoes> generateShoes(WeatherResponse currentWeather, GenderEnum gender){
-    return shoesList;
+    double currentTemp = currentWeather.getMain().getFeelsLike();
+    ArrayList<Shoes> filteredList = new ArrayList<>();
+    for (Shoes shoes: shoesList) {
+      if (shoes.getMinTemp() <= currentTemp && currentTemp < shoes.getMaxTemp()
+              && gender.equals(shoes.getGender())) {
+        filteredList.add(shoes);
+      }
+    }
+    return filteredList;
   }
 
   public List<Hat> generateHats(WeatherResponse currentWeather, GenderEnum gender){
-    return hatList;
+    double currentTemp = currentWeather.getMain().getFeelsLike();
+    ArrayList<Hat> filteredList = new ArrayList<>();
+    for (Hat hat: hatList) {
+      if (hat.getMinTemp() <= currentTemp && currentTemp < hat.getMaxTemp()
+              && gender.equals(hat.getGender())) {
+        filteredList.add(hat);
+      }
+    }
+    return filteredList;
   }
 }
