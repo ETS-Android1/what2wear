@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.what2wear.R;
 import com.example.what2wear.constant.GenderEnum;
@@ -50,15 +52,24 @@ public class HatFragment extends Fragment {
         ClothingFactory factory = ClothingFactory.getInstance();
         hatList = factory.generateHats(currentWeather, currentGender);
 
-        TextView hatText = view.findViewById(R.id.clothingList);
+        TextView hatText = view.findViewById(R.id.recyclerView);
         String hatName = hatList.get(0).getName();
         hatText.setText(hatName);
 
-        ImageView hatImage = view.findViewById(R.id.hatImageView);
+        ImageView hatImage = view.findViewById(R.id.recyclerView);
         int resourceId = getActivity().getApplicationContext().getResources().getIdentifier(
                 hatList.get(0).getFileName(),
                 "drawable",
                 getActivity().getApplicationContext().getPackageName());
         hatImage.setImageResource(resourceId);
+
+        // get the reference of RecyclerView
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        // set a LinearLayoutManager with default vertical orientation
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        // call the constructor of CustomAdapter to send the reference and data to Adapter
+        rvAdapter customAdapter = new rvAdapter(HatFragment.this, hatList);
+        recyclerView.setAdapter(customAdapter); // set the Adapter to RecyclerView
     }
 }
