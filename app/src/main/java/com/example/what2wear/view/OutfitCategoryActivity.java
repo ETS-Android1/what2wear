@@ -29,44 +29,12 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 public class OutfitCategoryActivity extends AppCompatActivity {
-  private WeatherDao weatherDao;
-
-  private List<Hat> hatList;
-  private List<Top> topList;
-  private List<Bottom> bottomList;
-  private List<Shoes> shoesList;
-  private List<Outwear> outwearListList;
-
-  private GenderEnum currentGender;
-  private WeatherResponse currentWeather;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_outfit_category);
 
-    // Initialize DAO
-    weatherDao = WeatherDao.getInstance();
-    currentWeather = weatherDao.getCurrentWeather();
-    currentGender = weatherDao.getGender();
-
-    ClothingFactory factory = ClothingFactory.getInstance();
-    hatList = factory.generateHats(currentWeather, currentGender);
-    topList = factory.generateTops(currentWeather, currentGender);
-    bottomList = factory.generateBottoms(currentWeather, currentGender);
-    shoesList = factory.generateShoes(currentWeather, currentGender);
-    outwearListList = factory.generateOutwears(currentWeather, currentGender);
-
-    TextView hatText = findViewById(R.id.clothingList);
-    String hatName = hatList.get(0).getName();
-    hatText.setText(hatName);
-
-    ImageView hatImage = findViewById(R.id.hatImageView);
-    int resourceId = getApplicationContext().getResources().getIdentifier(
-            hatList.get(0).getFileName(),
-            "drawable",
-            getApplicationContext().getPackageName());
-    hatImage.setImageResource(resourceId);
 
     SectionsPageAdapter pagerAdapter = new SectionsPageAdapter(getSupportFragmentManager(),
             FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
