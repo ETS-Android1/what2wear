@@ -63,8 +63,9 @@ public class WeatherInfoActivity extends AppCompatActivity implements WeatherInf
   public void setTextWithData() {
     selectedGenderText.setText(String.format(Locale.CANADA,"Gender: %s",
             weatherDao.getGender().toString()));
-    currentTemp.setText(String.format(Locale.CANADA, "Current Temperature: %f",
+    currentTemp.setText(String.format(Locale.CANADA, "Current Temperature: %.2f",
             weatherDao.getCurrentWeather().getMain().getTemp()));
+    currentTemp.append(" ℃");
     weatherDescription.setText(String.format(Locale.CANADA,"Weather Description: %s",
             weatherDao.getCurrentWeather().getWeather().get(0).getDescription()));
   }

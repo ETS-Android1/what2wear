@@ -3,6 +3,14 @@
     <string name="title_activity_user_info">UserInfoActivity</string>
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- tab bar items -->
+    <string name="tab_hats">Hats</string>
+    <string name="tab_tops">Tops</string>
+    <string name="tab_bottoms">Bottoms</string>
+    <string name="tab_outwear">Outerwear</string>
+    <string name="tab_shoes">Shoes</string>
 
 </resources>
