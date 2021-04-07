@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:onClick="onRadioButtonClicked"
+            android:buttonTint="@color/white"
             android:textColor="@color/white"
             android:text="@string/gender_male" />
 
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:onClick="onRadioButtonClicked"
+            android:buttonTint="@color/white"
             android:textColor="@color/white"
             android:text="@string/gender_female" />
     </RadioGroup>
@@ -52,36 +54,55 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current Location: "
+            android:text="@string/current_location"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/currentLocation_landing"
+        <LinearLayout
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-        <Button
-            android:id="@+id/addressButton_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/accentBlue_main"
-            android:text="Change Address" />
+            android:gravity="end"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/currentLocation_landing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/location_default_message"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:maxLines="1"
+                android:textSize="15sp" />
+            <Button
+                android:id="@+id/addressButton_main"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:backgroundTint="@color/accentBlue_main"
+                android:textColor="@color/white"
+                android:width="20dp"
+                android:text="@string/edit"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <Button
         android:id="@+id/nextButton_landing"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="center"
-        android:backgroundTint="@color/accentBlue_main"
+        android:backgroundTint="@color/white"
+        android:width="250dp"
+        android:textColor="@color/accentBlue2_main"
+        android:alpha="0.3"
+        android:textFontWeight="500"
         android:layout_margin="20dp"
-        android:text="Save" />
+        android:text="@string/save" />
 
 </LinearLayout>

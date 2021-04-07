@@ -1,4 +1,4 @@
-package com.example.what2wear.view;
+package com.example.what2wear.view.fragments;
 
 
 import android.os.Bundle;
@@ -9,38 +9,37 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.what2wear.R;
+import com.example.what2wear.adapter.WearableAdapter;
 import com.example.what2wear.constant.GenderEnum;
 import com.example.what2wear.data.WeatherDao;
 import com.example.what2wear.factory.ClothingFactory;
-import com.example.what2wear.models.clothing.Top;
+import com.example.what2wear.models.clothing.Shoes;
 import com.example.what2wear.models.weather.WeatherResponse;
 
 import java.util.List;
 
-public class TopFragment extends Fragment {
+public class ShoeFragment extends Fragment {
 
     private WeatherDao weatherDao;
 
-    private List<Top> topList;
+    private List<Shoes> shoeList;
 
     private GenderEnum currentGender;
     private WeatherResponse currentWeather;
+    private WearableAdapter adapter;
 
-    public TopFragment()
+    public ShoeFragment()
     {
-        super(R.layout.fragment_top);
+        super(R.layout.fragment_shoe);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         // Initialize DAO
         weatherDao = WeatherDao.getInstance();
@@ -48,17 +47,16 @@ public class TopFragment extends Fragment {
         currentGender = weatherDao.getGender();
 
         ClothingFactory factory = ClothingFactory.getInstance();
-        topList = factory.generateTops(currentWeather, currentGender);
+        shoeList = factory.generateShoes(currentWeather, currentGender);
+    }
 
-        TextView hatText = view.findViewById(R.id.clothingList2);
-        String topName = topList.get(0).getName();
-        hatText.setText(topName);
-
-        ImageView topImage = view.findViewById(R.id.topImageView);
-        int resourceId = getActivity().getApplicationContext().getResources().getIdentifier(
-                topList.get(0).getFileName(),
-                "drawable",
-                getActivity().getApplicationContext().getPackageName());
-        topImage.setImageResource(resourceId);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // set up the RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.rv_shoeFragment);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new WearableAdapter(getContext(), shoeList);
+        recyclerView.setAdapter(adapter);
     }
 }

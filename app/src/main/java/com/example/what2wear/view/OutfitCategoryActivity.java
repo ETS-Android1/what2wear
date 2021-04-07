@@ -2,55 +2,55 @@ package com.example.what2wear.view;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.what2wear.R;
-import com.example.what2wear.constant.GenderEnum;
-import com.example.what2wear.data.WeatherDao;
-import com.example.what2wear.factory.ClothingFactory;
-import com.example.what2wear.models.clothing.Bottom;
-import com.example.what2wear.models.clothing.Hat;
-import com.example.what2wear.models.clothing.Outwear;
-import com.example.what2wear.models.clothing.Shoes;
-import com.example.what2wear.models.clothing.Top;
-import com.example.what2wear.models.weather.WeatherResponse;
+import com.example.what2wear.view.fragments.BottomFragment;
+import com.example.what2wear.view.fragments.HatFragment;
+import com.example.what2wear.view.fragments.OutwearFragment;
+import com.example.what2wear.view.fragments.ShoeFragment;
+import com.example.what2wear.view.fragments.TopFragment;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.List;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class OutfitCategoryActivity extends AppCompatActivity {
 
+  private ViewPager2 viewPager;
+  private ScreenSlidePagerAdapter pageAdapter;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_outfit_category);
 
-
-    SectionsPageAdapter pagerAdapter = new SectionsPageAdapter(getSupportFragmentManager(),
-            FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-
-    ViewPager pager = (ViewPager) findViewById(R.id.pager);
-    pager.setAdapter(pagerAdapter);
-
-    TabLayout tabLayout = findViewById(R.id.tabs);
-    tabLayout.setupWithViewPager(pager);
+    viewPager = (ViewPager2) findViewById(R.id.pager);
+    pageAdapter = new ScreenSlidePagerAdapter(this);
+    viewPager.setAdapter(pageAdapter);
+    viewPager.setOffscreenPageLimit(5);
 
     // calling the action bar
     ActionBar actionBar = getSupportActionBar();
+    actionBar.setTitle("Outfit Recommendation");
 
     // showing the back button in action bar
     actionBar.setDisplayHomeAsUpEnabled(true);
 
+
+    TabLayout tabLayout = findViewById(R.id.tab_layout);
+    new TabLayoutMediator(tabLayout, viewPager,
+            (tab, position) -> tab.setText(getPageTitle(position))
+    ).attach();
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
   }
 
   // this event will enable the back
@@ -64,14 +64,32 @@ public class OutfitCategoryActivity extends AppCompatActivity {
     }
     return super.onOptionsItemSelected(item);
   }
+  public CharSequence getPageTitle(int position) {
+    switch (position) {
+      case 0:
+        return getString(R.string.tab_hats);
+      case 1:
+        return getString(R.string.tab_tops);
+      case 2:
+        return getString(R.string.tab_bottoms);
+      case 3:
+        return getString(R.string.tab_outwear);
+      case 4:
+        return getString(R.string.tab_shoes);
+    }
+    return null;
+  }
+  /**
+   * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
+   * sequence.
+   */
+  private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
+    public ScreenSlidePagerAdapter(FragmentActivity fa) {
+      super(fa);
+    }
 
-  public class SectionsPageAdapter extends FragmentPagerAdapter {
-
-    public SectionsPageAdapter(FragmentManager fm, int behaviour) { super(fm, behaviour); }
-
-    @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
       switch (position) {
         case 0:
           return new HatFragment();
@@ -88,26 +106,9 @@ public class OutfitCategoryActivity extends AppCompatActivity {
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
       return 5;
     }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-      switch (position) {
-        case 0:
-          return getString(R.string.tab_hats);
-        case 1:
-          return getString(R.string.tab_tops);
-        case 2:
-          return getString(R.string.tab_bottoms);
-        case 3:
-          return getString(R.string.tab_outwear);
-        case 4:
-          return getString(R.string.tab_shoes);
-      }
-      return null;
-    }
   }
+
 }

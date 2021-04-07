@@ -1,6 +1,7 @@
 package com.example.what2wear.mvp.weatherInfo;
 
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import com.example.what2wear.R;
@@ -9,6 +10,9 @@ import com.example.what2wear.models.weather.WeatherResponse;
 import com.example.what2wear.network.WeatherAPI;
 import com.example.what2wear.network.HttpClient;
 import com.example.what2wear.view.WeatherInfoActivity;
+
+import java.io.InputStream;
+import java.net.URL;
 
 import retrofit2.Call;
 import retrofit2.Callback;

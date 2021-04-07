@@ -107,7 +107,7 @@ public class ClothingFactory {
     ArrayList<Top> filteredList = new ArrayList<>();
     for (Top top: topList) {
       if (top.getMinTemp() <= currentTemp && currentTemp < top.getMaxTemp()
-              && gender.equals(top.getGender())) {
+              && (top.getGender().equals(GenderEnum.UNISEX) || gender.equals(top.getGender()))) {
         filteredList.add(top);
       }
     }

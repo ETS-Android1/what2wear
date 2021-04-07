@@ -1,5 +1,7 @@
 package com.example.what2wear.mvp.weatherInfo;
 
+import android.graphics.drawable.Drawable;
+
 import com.example.what2wear.models.weather.WeatherResponse;
 
 public interface WeatherInfoActivityContract {

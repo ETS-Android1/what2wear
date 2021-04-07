@@ -10,7 +10,7 @@ public class Main {
 
     @SerializedName("temp")
     private Double temp;
-    @SerializedName("feels_Like")
+    @SerializedName("feels_like")
     private Double feelsLike;
     @SerializedName("temp_min")
     private Double tempMin;

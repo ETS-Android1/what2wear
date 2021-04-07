@@ -301,11 +301,11 @@
   ],
   "OUTWEAR" : [
     {
-      "name" : "Dogecoin Hoodie",
+      "name" : "Hoodie",
       "fileName" : "outwear_hoodie",
       "minTemp" : 5.00,
       "maxTemp" : 22.00,
-      "gender" : "MALE"
+      "gender" : "UNISEX"
     },
     {
       "name" : "Zip-up Hoodie",

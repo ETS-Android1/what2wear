@@ -1,56 +1,61 @@
 package com.example.what2wear.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 import com.example.what2wear.R;
-import com.example.what2wear.constant.WearableEnum;
 import com.example.what2wear.data.WeatherDao;
-import com.example.what2wear.factory.ClothingFactory;
 import com.example.what2wear.models.weather.WeatherResponse;
 import com.example.what2wear.mvp.weatherInfo.WeatherInfoActivityContract;
 import com.example.what2wear.mvp.weatherInfo.WeatherInfoPresenterImpl;
+import com.google.android.libraries.places.api.model.AddressComponent;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 
 public class WeatherInfoActivity extends AppCompatActivity implements WeatherInfoActivityContract.View {
   private static Context mContext;
   private WeatherDao weatherDao;
-  private TextView selectedGenderText;
-  private TextView currentTemp;
-  private TextView weatherDescription;
+
+  private WeatherInfoPresenterImpl presenter;
+
+  private double latitude;
+  private double longitude;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_weather_info);
     mContext = this;
+    // calling the action bar
+    ActionBar actionBar = getSupportActionBar();
 
+    // showing the back button in action bar
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setTitle("");
 
     // Initialize DAO
     weatherDao = WeatherDao.getInstance();
 
-    double latitude = weatherDao.getCurrentPlace().getLatLng().latitude;
-    double longitude = weatherDao.getCurrentPlace().getLatLng().latitude;
+    latitude = weatherDao.getCurrentPlace().getLatLng().latitude;
+    longitude = weatherDao.getCurrentPlace().getLatLng().latitude;
 
     //Presenter
-    WeatherInfoPresenterImpl presenter = new WeatherInfoPresenterImpl(this);
+    presenter = new WeatherInfoPresenterImpl(this);
     presenter.loadWeatherDataByCoordinate(latitude, longitude);
-
-
-    Button refreshButton = findViewById(R.id.refreshButton_weather);
-    refreshButton.setOnClickListener(v -> {
-      presenter.loadWeatherDataByCoordinate(latitude, longitude);
-    });
-
-    selectedGenderText = findViewById(R.id.selectedGender_weather);
-    currentTemp = findViewById(R.id.currentTemp_weather);
-    weatherDescription = findViewById(R.id.weatherDescription_weather);
 
     Button generateButton = findViewById(R.id.generateButton_weather);
     generateButton.setOnClickListener((v) -> {
@@ -60,20 +65,73 @@ public class WeatherInfoActivity extends AppCompatActivity implements WeatherInf
 
   }
 
-  public void setTextWithData() {
-    selectedGenderText.setText(String.format(Locale.CANADA,"Gender: %s",
-            weatherDao.getGender().toString()));
-    currentTemp.setText(String.format(Locale.CANADA, "Current Temperature: %.2f",
-            weatherDao.getCurrentWeather().getMain().getTemp()));
-    currentTemp.append(" ℃");
-    weatherDescription.setText(String.format(Locale.CANADA,"Weather Description: %s",
-            weatherDao.getCurrentWeather().getWeather().get(0).getDescription()));
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.refresh_menu, menu);
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    int id = item.getItemId();
+
+    if (id == R.id.refresh_button) {
+      Toast.makeText(getContext(), "Refreshing...", Toast.LENGTH_SHORT).show();
+      presenter.loadWeatherDataByCoordinate(latitude, longitude);
+    } else if (id == android.R.id.home) {
+      this.finish();
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+  public void setData() {
+    WeatherResponse weather = weatherDao.getCurrentWeather();
+
+    TextView currentDayText = findViewById(R.id.currentDay_weather);
+    TextView cityText = findViewById(R.id.city_weather);
+    TextView countryText = findViewById(R.id.country_weather);
+    TextView currentWeatherText = findViewById(R.id.currentWeather_weather);
+    TextView currentTempText = findViewById(R.id.currentTemp_weather);
+    TextView minTempText = findViewById(R.id.minTemp_weather);
+    TextView maxTempText = findViewById(R.id.maxTemp_weather);
+    TextView feelsLikeText = findViewById(R.id.feelsLike_weather);
+    TextView windText = findViewById(R.id.wind_weather);
+    TextView humidityText = findViewById(R.id.humidity_weather);
+
+
+    List<AddressComponent> testList = weatherDao.getCurrentPlace().getAddressComponents().asList();
+
+    currentDayText.setText(LocalDate.now().getDayOfWeek().name());
+    cityText.setText(testList.get(0).getName().toUpperCase());
+    countryText.setText(testList.get(testList.size() - 1).getName().toUpperCase());
+    currentWeatherText.setText(weather.getWeather().get(0).getMain().toUpperCase());
+    currentTempText.setText(String.format(Locale.getDefault(), "%d℃",
+            weather.getMain().getTemp().intValue()));
+    minTempText.setText(String.format(Locale.getDefault(), "%d°",
+            weather.getMain().getTempMin().intValue()));
+    maxTempText.setText(String.format(Locale.getDefault(), "%d°",
+            weather.getMain().getTempMax().intValue()));
+    feelsLikeText.setText(String.format(Locale.getDefault(), "%d°",
+            weather.getMain().getFeelsLike().intValue()));
+    windText.setText(String.format(Locale.getDefault(), "%d km/h",
+            weather.getMain().getFeelsLike().intValue()));
+    humidityText.setText(String.format(Locale.getDefault(), "%d %%",
+            weather.getMain().getHumidity()));
+
+    ImageView weatherImage = findViewById(R.id.weatherImage_weather);
+    String iconUrl = String.format("http://openweathermap.org/img/wn/%s@2x.png",
+            weather.getWeather().get(0).getIcon());
+    Glide.with(this).load(iconUrl).into(weatherImage);
   }
 
   @Override
   public void showData(WeatherResponse data) {
     weatherDao.setCurrentWeather(data);
-    setTextWithData();
+    if (data.getMain().getFeelsLike() == null) {
+      data.getMain().setFeelsLike(data.getMain().getTemp());
+    }
+    setData();
   }
 
   @Override
@@ -99,4 +157,5 @@ public class WeatherInfoActivity extends AppCompatActivity implements WeatherInf
   public static Context getContext(){
     return mContext;
   }
+
 }

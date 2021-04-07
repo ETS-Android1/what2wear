@@ -1,4 +1,4 @@
-package com.example.what2wear.view;
+package com.example.what2wear.view.fragments;
 
 
 import android.os.Bundle;
@@ -9,8 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.what2wear.R;
+import com.example.what2wear.adapter.WearableAdapter;
 import com.example.what2wear.constant.GenderEnum;
 import com.example.what2wear.data.WeatherDao;
 import com.example.what2wear.factory.ClothingFactory;
@@ -27,6 +30,7 @@ public class BottomFragment extends Fragment {
 
     private GenderEnum currentGender;
     private WeatherResponse currentWeather;
+    private WearableAdapter adapter;
 
     public BottomFragment()
     {
@@ -36,11 +40,6 @@ public class BottomFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         // Initialize DAO
         weatherDao = WeatherDao.getInstance();
@@ -50,15 +49,15 @@ public class BottomFragment extends Fragment {
         ClothingFactory factory = ClothingFactory.getInstance();
         bottomList = factory.generateBottoms(currentWeather, currentGender);
 
-        TextView bottomText = view.findViewById(R.id.clothingList3);
-        String bottomName = bottomList.get(0).getName();
-        bottomText.setText(bottomName);
+    }
 
-        ImageView bottomImage = view.findViewById(R.id.bottomImageView);
-        int resourceId = getActivity().getApplicationContext().getResources().getIdentifier(
-                bottomList.get(0).getFileName(),
-                "drawable",
-                getActivity().getApplicationContext().getPackageName());
-        bottomImage.setImageResource(resourceId);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // set up the RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.rv_bottomFragment);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new WearableAdapter(getContext(), bottomList);
+        recyclerView.setAdapter(adapter);
     }
 }

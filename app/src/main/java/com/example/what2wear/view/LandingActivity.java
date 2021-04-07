@@ -16,10 +16,9 @@ import com.example.what2wear.R;
 import com.example.what2wear.constant.GenderEnum;
 import com.example.what2wear.data.WeatherDao;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AddressComponent;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
@@ -34,9 +33,9 @@ public class LandingActivity extends AppCompatActivity {
   // Set the fields to specify which types of place data to
   // return after the user has made a selection.
   private List<Place.Field> fields = Arrays.asList(
-          Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
+          Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS_COMPONENTS);
   private Button addressButton;
-  private Button nextButton;
+  private Button saveButton;
   private TextView currentLocation;
 
   private WeatherDao weatherDao;
@@ -56,7 +55,7 @@ public class LandingActivity extends AppCompatActivity {
 
     //Initialize Widgets
     addressButton = findViewById(R.id.addressButton_main);
-    nextButton = findViewById(R.id.nextButton_landing);
+    saveButton = findViewById(R.id.nextButton_landing);
     currentLocation = findViewById(R.id.currentLocation_landing);
 
     //Button to address setup
@@ -66,16 +65,17 @@ public class LandingActivity extends AppCompatActivity {
       startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
     });
 
-    //Next button handling
-    validateSaveButton();
-    nextButton.setOnClickListener(v -> {
+    saveButton.setOnClickListener(v -> {
       Intent intent = new Intent(this, WeatherInfoActivity.class);
       startActivity(intent);
     });
   }
 
   public void validateSaveButton() {
-    nextButton.setEnabled(weatherDao.getGender() != null && weatherDao.getCurrentPlace() != null);
+    if (weatherDao.getGender() != null && weatherDao.getCurrentPlace() != null) {
+      saveButton.setEnabled(true);
+      saveButton.setAlpha(1);
+    }
   }
 
   @Override
@@ -87,7 +87,11 @@ public class LandingActivity extends AppCompatActivity {
         Log.i(TAG, "Place: " + place.getName() + ", " + place.getId()
                 + "Latitude: " + place.getLatLng().latitude
                 + "Longitude: " + place.getLatLng().longitude);
-        currentLocation.setText(place.getAddress());
+        List<AddressComponent> testList = place.getAddressComponents().asList();
+        String formattedCity = String.format("%s, %s",
+                testList.get(0).getName(),
+                testList.get(testList.size() - 1).getName());
+        currentLocation.setText(formattedCity);
         validateSaveButton();
       } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
         Status status = Autocomplete.getStatusFromIntent(data);

@@ -1,4 +1,4 @@
-package com.example.what2wear.view;
+package com.example.what2wear.view.fragments;
 
 
 import android.os.Bundle;
@@ -9,8 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.what2wear.R;
+import com.example.what2wear.adapter.WearableAdapter;
 import com.example.what2wear.constant.GenderEnum;
 import com.example.what2wear.data.WeatherDao;
 import com.example.what2wear.factory.ClothingFactory;
@@ -28,6 +31,7 @@ public class OutwearFragment extends Fragment {
 
     private GenderEnum currentGender;
     private WeatherResponse currentWeather;
+    private WearableAdapter adapter;
 
     public OutwearFragment()
     {
@@ -37,11 +41,6 @@ public class OutwearFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         // Initialize DAO
         weatherDao = WeatherDao.getInstance();
@@ -50,16 +49,15 @@ public class OutwearFragment extends Fragment {
 
         ClothingFactory factory = ClothingFactory.getInstance();
         outwearList = factory.generateOutwears(currentWeather, currentGender);
+    }
 
-        TextView outwearText = view.findViewById(R.id.clothingList4);
-        String outwearName = outwearList.get(0).getName();
-        outwearText.setText(outwearName);
-
-        ImageView outwearImage = view.findViewById(R.id.outwearImageView);
-        int resourceId = getActivity().getApplicationContext().getResources().getIdentifier(
-                outwearList.get(0).getFileName(),
-                "drawable",
-                getActivity().getApplicationContext().getPackageName());
-        outwearImage.setImageResource(resourceId);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // set up the RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.rv_outwearFragment);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new WearableAdapter(getContext(), outwearList);
+        recyclerView.setAdapter(adapter);
     }
 }
