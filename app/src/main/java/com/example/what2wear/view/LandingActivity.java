@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.what2wear.R;
 import com.example.what2wear.constant.GenderEnum;
 import com.example.what2wear.data.WeatherDao;
+import com.example.what2wear.factory.ClothingFactory;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AddressComponent;
@@ -49,6 +50,7 @@ public class LandingActivity extends AppCompatActivity {
 
     // Initialize DAO
     weatherDao = WeatherDao.getInstance();
+    ClothingFactory.getInstance(getApplicationContext());
 
     // Initialize the places SDK
     Places.initialize(getApplicationContext(), getString(R.string.google_places_key));

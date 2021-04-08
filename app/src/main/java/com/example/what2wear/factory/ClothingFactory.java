@@ -1,5 +1,7 @@
 package com.example.what2wear.factory;
 
+import android.content.Context;
+
 import com.example.what2wear.constant.GenderEnum;
 import com.example.what2wear.models.clothing.Bottom;
 import com.example.what2wear.models.clothing.Hat;
@@ -30,20 +32,20 @@ public class ClothingFactory {
   private final List<Shoes> shoesList = new ArrayList<>();
   private final List<Outwear> outwearList = new ArrayList<>();
 
-  public static synchronized ClothingFactory getInstance() {
+  public static synchronized ClothingFactory getInstance(Context context) {
     if (clothingFactory == null) {
-      clothingFactory = new ClothingFactory();
+      clothingFactory = new ClothingFactory(context);
     }
 
     return clothingFactory;
   }
-  private ClothingFactory() {
-    stockInventory();
+  private ClothingFactory(Context context) {
+    stockInventory(context);
   }
 
-  private void stockInventory() {
+  private void stockInventory(Context context) {
     try {
-      JSONObject jsonObject = new JSONObject(loadJSONFromAsset());
+      JSONObject jsonObject = new JSONObject(loadJSONFromAsset(context));
       JSONArray hatArray = jsonObject.getJSONArray("HAT");
       JSONArray topArray = jsonObject.getJSONArray("TOP");
       JSONArray bottomArray = jsonObject.getJSONArray("BOTTOM");
@@ -86,10 +88,10 @@ public class ClothingFactory {
   }
 
 
-  private String loadJSONFromAsset() {
+  private String loadJSONFromAsset(Context context) {
     String json;
     try {
-      InputStream is = WeatherInfoActivity.getContext().getAssets().open(JSON_DATA);
+      InputStream is = context.getAssets().open(JSON_DATA);
       int size = is.available();
       byte[] buffer = new byte[size];
       is.read(buffer);

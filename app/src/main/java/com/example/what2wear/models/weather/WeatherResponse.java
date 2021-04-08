@@ -12,6 +12,7 @@ public class WeatherResponse {
     private List<Weather> weather = null;
     @SerializedName("base")
     private String base;
+    @SerializedName("main")
     private Main main;
     @SerializedName("visibility")
     private Integer visibility;

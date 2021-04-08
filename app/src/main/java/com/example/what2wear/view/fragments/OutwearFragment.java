@@ -47,7 +47,7 @@ public class OutwearFragment extends Fragment {
         currentWeather = weatherDao.getCurrentWeather();
         currentGender = weatherDao.getGender();
 
-        ClothingFactory factory = ClothingFactory.getInstance();
+        ClothingFactory factory = ClothingFactory.getInstance(getContext());
         outwearList = factory.generateOutwears(currentWeather, currentGender);
     }
 

@@ -2,6 +2,9 @@ package com.example.what2wear.view;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -46,6 +49,7 @@ public class OutfitCategoryActivity extends AppCompatActivity {
     new TabLayoutMediator(tabLayout, viewPager,
             (tab, position) -> tab.setText(getPageTitle(position))
     ).attach();
+
   }
 
   @Override
@@ -64,6 +68,7 @@ public class OutfitCategoryActivity extends AppCompatActivity {
     }
     return super.onOptionsItemSelected(item);
   }
+
   public CharSequence getPageTitle(int position) {
     switch (position) {
       case 0:
@@ -79,6 +84,7 @@ public class OutfitCategoryActivity extends AppCompatActivity {
     }
     return null;
   }
+
   /**
    * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
    * sequence.

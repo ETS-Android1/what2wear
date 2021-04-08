@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,9 @@ public class WeatherInfoActivity extends AppCompatActivity implements WeatherInf
   private double latitude;
   private double longitude;
 
+  private ProgressBar progressBar;
+  private Button generateButton;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -51,14 +56,20 @@ public class WeatherInfoActivity extends AppCompatActivity implements WeatherInf
     weatherDao = WeatherDao.getInstance();
 
     latitude = weatherDao.getCurrentPlace().getLatLng().latitude;
-    longitude = weatherDao.getCurrentPlace().getLatLng().latitude;
+    longitude = weatherDao.getCurrentPlace().getLatLng().longitude;
 
     //Presenter
     presenter = new WeatherInfoPresenterImpl(this);
     presenter.loadWeatherDataByCoordinate(latitude, longitude);
 
-    Button generateButton = findViewById(R.id.generateButton_weather);
+    progressBar = findViewById(R.id.progressBar_weather);
+    progressBar.setVisibility(View.VISIBLE);
+
+    generateButton = findViewById(R.id.generateButton_weather);
     generateButton.setOnClickListener((v) -> {
+      generateButton.setAlpha(0.2f);
+      generateButton.setEnabled(false);
+      progressBar.setVisibility(View.VISIBLE);
       Intent intent = new Intent(this, OutfitCategoryActivity.class);
       startActivity(intent);
     });
@@ -115,7 +126,7 @@ public class WeatherInfoActivity extends AppCompatActivity implements WeatherInf
     feelsLikeText.setText(String.format(Locale.getDefault(), "%d°",
             weather.getMain().getFeelsLike().intValue()));
     windText.setText(String.format(Locale.getDefault(), "%d km/h",
-            weather.getMain().getFeelsLike().intValue()));
+            weather.getWind().getSpeed().intValue()));
     humidityText.setText(String.format(Locale.getDefault(), "%d %%",
             weather.getMain().getHumidity()));
 
@@ -132,6 +143,7 @@ public class WeatherInfoActivity extends AppCompatActivity implements WeatherInf
       data.getMain().setFeelsLike(data.getMain().getTemp());
     }
     setData();
+    progressBar.setVisibility(View.INVISIBLE);
   }
 
   @Override
@@ -158,4 +170,12 @@ public class WeatherInfoActivity extends AppCompatActivity implements WeatherInf
     return mContext;
   }
 
+
+  @Override
+  protected void onStop() {
+    generateButton.setEnabled(true);
+    generateButton.setAlpha(1);
+    progressBar.setVisibility(View.INVISIBLE);
+    super.onStop();
+  }
 }

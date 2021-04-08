@@ -46,7 +46,7 @@ public class TopFragment extends Fragment {
         currentWeather = weatherDao.getCurrentWeather();
         currentGender = weatherDao.getGender();
 
-        ClothingFactory factory = ClothingFactory.getInstance();
+        ClothingFactory factory = ClothingFactory.getInstance(getContext());
         topList = factory.generateTops(currentWeather, currentGender);
     }
 

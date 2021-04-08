@@ -46,7 +46,7 @@ public class BottomFragment extends Fragment {
         currentWeather = weatherDao.getCurrentWeather();
         currentGender = weatherDao.getGender();
 
-        ClothingFactory factory = ClothingFactory.getInstance();
+        ClothingFactory factory = ClothingFactory.getInstance(getContext());
         bottomList = factory.generateBottoms(currentWeather, currentGender);
 
     }

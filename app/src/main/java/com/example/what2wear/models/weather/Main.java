@@ -13,9 +13,9 @@ public class Main {
     @SerializedName("feels_like")
     private Double feelsLike;
     @SerializedName("temp_min")
-    private Double tempMin;
+    private Double tempMin = 0.0;
     @SerializedName("temp_max")
-    private Double tempMax;
+    private Double tempMax = 0.0;
     @SerializedName("pressure")
     private Integer pressure;
     @SerializedName("humidity")
