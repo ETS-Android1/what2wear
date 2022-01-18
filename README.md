@@ -14,7 +14,9 @@ Import the project from Android Studio to run it.
 
 ## App Design
 
-![alt text](C:\Users\Gyooms\Desktop\project\what2wear\asset\images\main.png)
+![alt text](https://github.com/paul923/what2wear/blob/master/asset/images/main.png)
+![alt text](https://github.com/paul923/what2wear/blob/master/asset/images/phone.png)
+![alt text](https://github.com/paul923/what2wear/blob/master/asset/images/solution.png)
 
 ## Technology Used
 - Android Studio
